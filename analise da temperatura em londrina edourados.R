@@ -35,7 +35,7 @@ nrow(df)
 nrow(cidadesBrasil)
 dim(cidadesBrasil)
 
-# Organizando o código, modificando datas.
+# Organizando o cÃ³digo, modificando datas.
 
 cidadesBrasil$dt <- as.POSIXct(cidadesBrasil$dt,format='%Y-%m-%d')
 cidadesBrasil$Month <- month(cidadesBrasil$dt)
@@ -59,7 +59,7 @@ p_Lon <- ggplot(Lon, aes(x = (Month), y = AverageTemperature, color = as.factor(
   xlab("Mais")+
   ylab("Temperatura") +
   scale_color_discrete("") +
-  ggtitle("Temperatura MÃ©dia ao longo dos anos em Londrina") +
+  ggtitle("Temperatura MÃƒÂ©dia ao longo dos anos em Londrina") +
   theme(plot.title = element_text(size = 18))
 
 # Buscando por Dourados
@@ -70,28 +70,28 @@ p_Dou <- ggplot(Dou, aes(x = (Month), y = AverageTemperature, color = as.factor(
   xlab("Mais")+
   ylab("Temperatura") +
   scale_color_discrete("") +
-  ggtitle("Temperatura MÃ©dia ao longo dos anos em Dourados")
+  ggtitle("Temperatura MÃƒÂ©dia ao longo dos anos em Dourados")
   theme(plot.title = element_text(size = 18))
 
 
 
-# Exportando em gráfico para possibilitar analise
+# Exportando em grÃ¡fico para possibilitar analise
 p_Lon
 p_Dou
 
 
 
-# Média de Temperatura ao longo do tempo
+# MÃ©dia de Temperatura ao longo do tempo
 ML = mean(Lon$AverageTemperature)
 
 
 MD= mean(Dou$AverageTemperature)
 
 
-# Diferença da média entre as duas cidades
+# DiferenÃ§a da mÃ©dia entre as duas cidades
 ML-MD
 
-# Criando varias demonstrações gráficas da variação de temperatura entre as cidades.
+# Criando varias demonstraÃ§Ãµes grÃ¡ficas da variaÃ§Ã£o de temperatura entre as cidades.
 # Buscando a forma mais didatica 
 
 
@@ -120,7 +120,7 @@ plot(AverageTemperature ~ dt, data = df_1996dourados, log = "x")
 
 title(main="df_1996dourados x df_1996londrina")
 
-# Através de um histograma
+# AtravÃ©s de um histograma
 
 # Chamandoos dados
 
@@ -139,4 +139,16 @@ yaxis = yaxis*diff(hey$mids)*length(VT_Lon)
 
 lines(xaxis, yaxis, col = "red")
 
+# Usando o Lattice para criar uma demonstraÃ§Ã£o grÃ¡fica mensal do ano de 1996 
+# Nas duas cidades
+
+install.packages('lattice')
+library(lattice)
+
+qqmath(~ AverageTemperature | dt , data = df_1996londrina, distribution=qunif)
+
+
+
+
+qqmath(~ AverageTemperature | dt, data = df_1996dourados, distribution=qunif)
 
